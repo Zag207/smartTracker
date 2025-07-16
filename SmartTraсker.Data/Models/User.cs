@@ -2,13 +2,6 @@
 
 namespace SmartTraсker.Data.Models;
 
-public enum Role
-{
-    Worker,
-    Manager,
-    Admin
-}
-
 public class User
 {
     public Guid Id { get; set; }
@@ -19,11 +12,16 @@ public class User
     [MaxLength(50)]
     public required string Surname { get; set; }
     
-    public required Role Role { get; set; }
+    [MaxLength(50)]
+    public required string UserName { get; set; }
+    
+    public required Guid RoleId { get; set; }
+    
     public required string PasswordHash { get; set; }
 
-    public List<Task> CreatedTasks { get; set; } = [];
-    public List<Task> AssignedTasks { get; set; } = [];
+    public Role? Role { get; set; }
+    public List<WorkTask> CreatedTasks { get; set; } = [];
+    public List<WorkTask> AssignedTasks { get; set; } = [];
     public List<Comment> Comments { get; set; } = [];
 }
 

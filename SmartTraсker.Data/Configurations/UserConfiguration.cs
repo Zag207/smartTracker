@@ -21,5 +21,14 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder
             .HasMany(u => u.Comments)
             .WithOne(c => c.Author);
+
+        builder
+            .HasOne(u => u.Role)
+            .WithMany(r => r.Users)
+            .HasForeignKey(u => u.RoleId);
+        
+        builder
+            .HasIndex(u => u.UserName)
+            .IsUnique();
     }
 }

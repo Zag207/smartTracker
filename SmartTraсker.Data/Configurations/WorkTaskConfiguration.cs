@@ -1,13 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SmartTraсker.Data.Models;
-using Task = SmartTraсker.Data.Models.Task;
 
 namespace SmartTraсker.Data.Configurations;
 
-public class TaskConfiguration : IEntityTypeConfiguration<Task>
+public class WorkTaskConfiguration : IEntityTypeConfiguration<WorkTask>
 {
-    public void Configure(EntityTypeBuilder<Task> builder)
+    public void Configure(EntityTypeBuilder<WorkTask> builder)
     {
         builder.HasKey(x => x.Id);
 

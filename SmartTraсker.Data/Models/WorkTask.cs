@@ -2,24 +2,23 @@
 
 namespace SmartTraсker.Data.Models;
 
-public enum TaskStatus
+public enum WorkTaskStatus
 {
-    Created,
-    Assigned,
+    Created, 
     InProgress,
     Completed,
     Rejected,
 }
 
-public enum TaskPriority
+public enum WorkTaskPriority
 {
-    Low,
-    Medium,
+    Critical,
     High,
-    Critical
+    Medium,
+    Low
 }
 
-public class Task
+public class WorkTask
 {
     public Guid Id { get; set; }
     
@@ -28,10 +27,10 @@ public class Task
     
     [MaxLength(250)]
     public string Description { get; set; } = "";
-    
-    public required TaskStatus Status { get; set; }
-    public required TaskPriority Priority { get; set; }
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
+
+    public required WorkTaskStatus Status { get; set; } = WorkTaskStatus.Created;
+    public required WorkTaskPriority Priority { get; set; }
+    public required DateTime CreatedAt { get; set; } = DateTime.Now;
     public required DateTime Deadline { get; set; }
     
     public required Guid AuthorId {get; set;}
