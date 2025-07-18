@@ -32,7 +32,7 @@ public static class ServiceBLExtensions
                     ValidIssuer = authSettings.Issuer,
                     
                     ValidateIssuer = true,
-                    ValidateLifetime = true,
+                    ValidateLifetime = false,
                     ValidateAudience = false,
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(

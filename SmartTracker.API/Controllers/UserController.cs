@@ -27,7 +27,7 @@ public class UserController(
     }
 
     [HttpGet]
-    [Authorize(Roles = "Admin, Manager, Worker")]
+    [Authorize(Roles = "Admin")]
     public async Task<ActionResult<UserAllWithIdDto?>> GetUser(Guid userId)
     {
         try

@@ -1,6 +1,7 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Text.Json;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Tokens;
@@ -17,11 +18,11 @@ public class JwtService(IOptions<AuthSettings> options) : IJwtService
         {
             new Claim(ClaimTypes.Name, user.UserName),
             new Claim("Id", user.Id.ToString()),
-            new Claim(ClaimTypes.Role, user.Role.Name),
+            new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role.Name),
         };
 
         var jwtToken = new JwtSecurityToken(
-            expires: DateTime.UtcNow.Add(options.Value.ExpiresIn),
+            // expires: DateTime.UtcNow.Add(options.Value.ExpiresIn),
             issuer: options.Value.Issuer,
             audience: options.Value.Issuer,
             claims: claims,
