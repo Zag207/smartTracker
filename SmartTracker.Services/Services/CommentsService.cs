@@ -33,9 +33,11 @@ public class CommentsService(
             throw new NullReferenceException("Task not found");
         }
         
-        return (await commentsRepository.GetByTaskId(taskId))
+        var res = (await commentsRepository.GetByTaskId(taskId))
             .Select(c => c.Adapt<CommentAllWithIdDto>())
             .ToList();
+
+        return res;
     }
     
     public async Task<List<CommentAllWithIdDto>> GetByAuthorId(Guid authorId)

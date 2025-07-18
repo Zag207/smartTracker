@@ -6,13 +6,11 @@ public enum WorkTaskStatus
 {
     Created, 
     InProgress,
-    Completed,
-    Rejected,
+    Completed
 }
 
 public enum WorkTaskPriority
 {
-    Critical,
     High,
     Medium,
     Low

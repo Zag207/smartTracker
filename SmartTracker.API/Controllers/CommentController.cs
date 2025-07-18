@@ -12,14 +12,14 @@ public class CommentController(
     ) : Controller
 {
     [HttpGet]
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public async Task<ActionResult<List<CommentAllWithIdDto>>> Get()
     {
         return Ok(await commnetsService.Get());
     }
 
     [HttpGet]
-    [Authorize(Roles = "Admin, Manager, Worker")]
+    [Authorize]
     public async Task<ActionResult<CommentAllWithIdDto?>> GetById(Guid commentId)
     {
         try
@@ -33,7 +33,7 @@ public class CommentController(
     }
 
     [HttpGet]
-    [Authorize(Roles = "Admin, Manager, Worker")]
+    [Authorize]
     public async Task<ActionResult<List<CommentAllWithIdDto>>> GetByTaskId(Guid taskId)
     {
         try
@@ -47,7 +47,7 @@ public class CommentController(
     }
 
     [HttpGet]
-    [Authorize(Roles = "Admin, Manager, Worker")]
+    [Authorize]
     public async Task<ActionResult<List<CommentAllWithIdDto>>> GetByAuthorId(Guid authorId)
     {
         try
@@ -61,7 +61,7 @@ public class CommentController(
     }
 
     [HttpPost]
-    [Authorize(Roles = "Admin, Worker")]
+    [Authorize]
     public async Task<ActionResult<Guid?>> Create([FromBody] CommnetCreateDto newComment)
     {
         try
@@ -75,7 +75,7 @@ public class CommentController(
     }
 
     [HttpPut]
-    [Authorize(Roles = "Admin, Worker")]
+    [Authorize]
     public async Task<ActionResult<CommentBaseDto?>> Update([FromBody] CommentChangeDataDto updatedComment)
     {
         try
@@ -89,7 +89,7 @@ public class CommentController(
     }
 
     [HttpDelete]
-    [Authorize(Roles = "Admin, Worker")]
+    [Authorize]
     public async Task<ActionResult<CommentAllWithIdDto?>> Delete(Guid commentId)
     {
         try

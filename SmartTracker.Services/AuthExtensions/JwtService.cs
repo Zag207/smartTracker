@@ -22,7 +22,7 @@ public class JwtService(IOptions<AuthSettings> options) : IJwtService
         };
 
         var jwtToken = new JwtSecurityToken(
-            // expires: DateTime.UtcNow.Add(options.Value.ExpiresIn),
+            expires: DateTime.UtcNow.Add(options.Value.ExpiresIn),
             issuer: options.Value.Issuer,
             audience: options.Value.Issuer,
             claims: claims,

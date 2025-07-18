@@ -12,14 +12,14 @@ public class WorkTaskController(
     ) : Controller
 {
     [HttpGet]
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public async Task<ActionResult<List<WorkTaskAllWithIdDto>>> Get()
     {
         return Ok(await workTaskService.GetWorkTasks());
     }
 
     [HttpGet]
-    [Authorize(Roles = "Admin, Manager, Worker")]
+    [Authorize]
     public async Task<ActionResult<WorkTaskAllWithIdDto?>> GetById(Guid taskId)
     {
         var task = await workTaskService.GetWorkTaskById(taskId);
@@ -33,7 +33,7 @@ public class WorkTaskController(
     }
 
     [HttpPost]
-    [Authorize(Roles = "Admin, Manager")]
+    [Authorize(Roles = "Manager")]
     public async Task<ActionResult<Guid?>> Create([FromBody]WorkTaskCreateDto newTask)
     {
         try
@@ -47,7 +47,7 @@ public class WorkTaskController(
     }
 
     [HttpPut]
-    [Authorize(Roles = "Admin, Manager, Worker")]
+    [Authorize(Roles = "Worker")]
     public async Task<ActionResult<WorkTaskBaseDto?>> ChangeStatus([FromBody] WorkTaskStatusDto workTaskStatusDto)
     {
         try
@@ -61,7 +61,7 @@ public class WorkTaskController(
     }
     
     [HttpPut]
-    [Authorize(Roles = "Admin, Manager")]
+    [Authorize(Roles = "Manager")]
     public async Task<ActionResult<WorkTaskBaseDto?>> ChangePriority([FromBody] WorkTaskPriorityDto workTaskPriorityDto)
     {
         try
@@ -75,7 +75,7 @@ public class WorkTaskController(
     }
 
     [HttpPut]
-    [Authorize(Roles = "Admin, Manager")]
+    [Authorize(Roles = "Manager")]
     public async Task<ActionResult<WorkTaskBaseDto?>> UpdateInfo([FromBody] WorkTaskUpdateDto newWorkTask)
     {
         try
@@ -89,7 +89,7 @@ public class WorkTaskController(
     }
 
     [HttpPut]
-    [Authorize(Roles = "Admin, Manager")]
+    [Authorize(Roles = "Manager")]
     public async Task<ActionResult<WorkTaskAllWithIdDto?>> AssignExecutor([FromBody] ExecutorDto executorDto)
     {
         try
@@ -103,7 +103,7 @@ public class WorkTaskController(
     }
 
     [HttpDelete]
-    [Authorize(Roles = "Admin, Manager")]
+    [Authorize(Roles = "Manager")]
     public async Task<ActionResult<WorkTaskAllWithIdDto?>> Delete(Guid taskId)
     {
         try

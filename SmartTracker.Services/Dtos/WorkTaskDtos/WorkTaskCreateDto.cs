@@ -14,4 +14,5 @@ public class WorkTaskCreateDto
     public required DateTime Deadline { get; set; }
     
     public required Guid AuthorId {get; set;}
+    public required Guid ExecutorId {get; set;}
 }

@@ -82,6 +82,8 @@ public class CommentsRepository(ApplicationContext db) : ICommentsRepository
 
     public async Task Add(Comment newComment)
     {
+        newComment.Created = newComment.Created.ToUniversalTime();
+        
         await _db.Comments.AddAsync(newComment);
         await _db.SaveChangesAsync();
     }

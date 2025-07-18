@@ -13,21 +13,21 @@ public class UserController(
     ) : Controller
 {
     [HttpGet]
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public async Task<ActionResult<UserAllWithIdDto>> GetUsers()
     {
         return Ok(await userService.GetUsers());
     }
 
     [HttpGet]
-    [Authorize(Roles = "Admin, Manager")]
+    [Authorize(Roles = "Manager")]
     public async Task<ActionResult<List<UserAllWithIdDto>>> GetWorkers()
     {
         return Ok(await userService.GetUsersWithRoles("Worker"));
     }
 
     [HttpGet]
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public async Task<ActionResult<UserAllWithIdDto?>> GetUser(Guid userId)
     {
         try
@@ -55,7 +55,7 @@ public class UserController(
     }
 
     [HttpPut]
-    [Authorize(Roles = "Admin, Manager, Worker")]
+    [Authorize]
     public async Task<ActionResult<UserBaseDto>> UpdateUser([FromBody] UserUpdateDto user)
     {
         try
@@ -69,7 +69,7 @@ public class UserController(
     }
 
     [HttpDelete]
-    [Authorize(Roles = "Admin, Manager, Worker")]
+    [Authorize]
     public async Task<ActionResult<UserAllDto>> DeleteUser(Guid userId)
     {
         try
