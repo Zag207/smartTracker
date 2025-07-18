@@ -92,7 +92,7 @@ public class CommentsRepository(ApplicationContext db) : ICommentsRepository
             .Where(c => c.Id == newComment.Id)
             .ExecuteUpdateAsync(s => s
                 .SetProperty(c => c.Description, newComment.Description)
-                .SetProperty(c => c.Created, newComment.Created)
+                .SetProperty(c => c.Created, newComment.Created.ToUniversalTime())
                 .SetProperty(c => c.AuthorId, newComment.AuthorId)
                 .SetProperty(c => c.TaskId, newComment.TaskId)
             );

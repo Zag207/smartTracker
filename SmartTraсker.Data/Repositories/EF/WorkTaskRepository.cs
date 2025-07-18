@@ -65,6 +65,8 @@ public class WorkTasksRepository(ApplicationContext db) : IWorkTaskRepository
 
     public async Task Add(WorkTask newTask)
     {
+        newTask.CreatedAt = newTask.CreatedAt.ToUniversalTime();
+        newTask.Deadline = newTask.Deadline.ToUniversalTime();
         await _db.WorkTasks.AddAsync(newTask);
         await _db.SaveChangesAsync();
     }
@@ -78,8 +80,8 @@ public class WorkTasksRepository(ApplicationContext db) : IWorkTaskRepository
                 .SetProperty(t => t.Description, newWorkTask.Description)
                 .SetProperty(t => t.Status, newWorkTask.Status)
                 .SetProperty(t => t.Priority, newWorkTask.Priority)
-                .SetProperty(t => t.CreatedAt, newWorkTask.CreatedAt)
-                .SetProperty(t => t.Deadline, newWorkTask.Deadline)
+                .SetProperty(t => t.CreatedAt, newWorkTask.CreatedAt.ToUniversalTime())
+                .SetProperty(t => t.Deadline, newWorkTask.Deadline.ToUniversalTime())
                 .SetProperty(t => t.AuthorId, newWorkTask.AuthorId)
                 .SetProperty(t => t.ExecutorId, newWorkTask.ExecutorId)
             );
